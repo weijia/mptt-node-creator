@@ -13,27 +13,30 @@ $(function() {
                 dataUrlParams: additionalParam,
                 method: "GET"
             });
-//            div_elem.attr("ms", ms);
+            div_elem.attr("ms", ms);
             $(ms).on("selectionchange", function(e, control, selects){
                     console.log(ms);
+                    var parent = selects[0].id;
+
                     if(selects.length == 0){
                         return;
                     }
+
                     var next_level = parseInt(div_elem.attr("level"))+1;
                     var next_level_div_elem = $("#level-"+next_level);
+                    var next_ms = next_level_div_elem.attr("ms");
                     if(next_level_div_elem.length>0){
                         setTimeout(function(){
                             console.log("focus on", $("input", next_level_div_elem));
                             $("input", next_level_div_elem).focus();
+                            next_ms.setDataUrlParams({"parent": parent})
                         }, 50);
                         return;
                     };
 
-                    var parent = selects[0].id;
-
                     var new_div_with_input = $('<div class="col-md-2" level="'+
-                        next_level+'" id="level-'+next_level+'" node_id="'+selects[0]+'">'+
-                            '<input class="form-inline"/>'+
+                        next_level+'" id="level-'+next_level+'" node_id="'+selects[0].id+'">'+
+                            '<input class="form-inline" name="level'+next_level+'" />'+
                         '</div>');
                     $("#input-holder").append(new_div_with_input);
                     var new_ms = attach_magic_suggest(new_div_with_input, parent);
