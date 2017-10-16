@@ -1,29 +1,40 @@
 $(function() {
-        function attach_magic_suggest(div_elem, parent){
-            var elem = $("input", div_elem);
-            if(typeof parent_name === 'undefined'){
-                parent_name = "parent"
-            }
-            if(typeof root_parent === 'undefined'){
-                root_parent = "None";
-            }
-//            if(typeof display_field === 'undefined'){
-//                display_field = "content"
-//            }
-//            if(typeof query_param === 'undefined'){
-//                query_param = "content__icontains"
+        function gen_parent_param_dict(parent){
+//            if(typeof root_parent === 'undefined'){
+//                root_parent = "None";
 //            }
             var additionalParam = {};
             additionalParam[parent_name] = root_parent;
             if(parent){
                 additionalParam[parent_name] = parent;
             }
+            return additionalParam;
+        }
+        function attach_magic_suggest(div_elem, parent){
+            var elem = $("input", div_elem);
+//            if(typeof parent_name === 'undefined'){
+//                parent_name = "parent"
+//            }
+//            if(typeof root_parent === 'undefined'){
+//                root_parent = "None";
+//            }
+//            if(typeof display_field === 'undefined'){
+//                display_field = "content"
+//            }
+//            if(typeof query_param === 'undefined'){
+//                query_param = "content__icontains"
+//            }
+//            var additionalParam = {};
+//            additionalParam[parent_name] = root_parent;
+//            if(parent){
+//                additionalParam[parent_name] = parent;
+//            }
             var ms = elem.magicSuggest({
                 data: base_tree_url,
                 resultsField: results_field,
                 valueField: "id",
                 displayField: display_field,
-                dataUrlParams: additionalParam,
+                dataUrlParams: gen_parent_param_dict(false),
                 queryParam: query_param,
                 method: "GET"
             });
@@ -39,11 +50,11 @@ $(function() {
                     var next_level = parseInt(div_elem.attr("level"))+1;
                     var next_level_div_elem = $("#level-"+next_level);
                     var next_ms = next_level_div_elem.attr("ms");
-                    if(next_level_div_elem.length>0){
+                    if(next_level_div_elem.length > 0){
                         setTimeout(function(){
                             console.log("focus on", $("input", next_level_div_elem));
                             $("input", next_level_div_elem).focus();
-                            next_ms.setDataUrlParams({"parent": parent})
+                            next_ms.setDataUrlParams(gen_parent_param_dict(parent));
                         }, 50);
                         return;
                     };
