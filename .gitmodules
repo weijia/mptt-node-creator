@@ -1,0 +1,3 @@
+[submodule "mptt_node_creator/static/magicsuggest"]
+	path = mptt_node_creator/static/magicsuggest
+	url = https://github.com/nicolasbize/magicsuggest.git
