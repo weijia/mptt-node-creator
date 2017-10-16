@@ -1,8 +1,6 @@
 $(function() {
         function gen_parent_param_dict(parent){
-//            if(typeof root_parent === 'undefined'){
-//                root_parent = "None";
-//            }
+
             var additionalParam = {};
             additionalParam[parent_name] = root_parent;
             if(parent){
@@ -12,23 +10,7 @@ $(function() {
         }
         function attach_magic_suggest(div_elem, parent){
             var elem = $("input", div_elem);
-//            if(typeof parent_name === 'undefined'){
-//                parent_name = "parent"
-//            }
-//            if(typeof root_parent === 'undefined'){
-//                root_parent = "None";
-//            }
-//            if(typeof display_field === 'undefined'){
-//                display_field = "content"
-//            }
-//            if(typeof query_param === 'undefined'){
-//                query_param = "content__icontains"
-//            }
-//            var additionalParam = {};
-//            additionalParam[parent_name] = root_parent;
-//            if(parent){
-//                additionalParam[parent_name] = parent;
-//            }
+
             var ms = elem.magicSuggest({
                 data: base_tree_url,
                 resultsField: results_field,
