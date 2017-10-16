@@ -5,6 +5,11 @@
     <link href="{% static 'magicsuggest/magicsuggest-min.css' %}" rel="stylesheet">
     <script>
         var base_tree_url = "{{ base_tree_url }}";
+        {% if root_parent %} var root_parent = "{{ root_parent }}";{% endif %}
+        {% if parent_name %} var parent_name = "{{ parent_name }}"; {% endif %}
+        {% if query_param %} var query_param = "{{ query_param }}";{% endif %}
+        {% if display_field %} var display_field = "{{ display_field }}"; {% endif %}
+        {% if results_field %} var results_field = "{{ results_field }}"; {% endif %}
     </script>
     <form action="">
         {% csrf_token %}
