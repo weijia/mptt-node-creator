@@ -34,7 +34,7 @@ $(function() {
                 resultsField: results_field,
                 valueField: "id",
                 displayField: display_field,
-                dataUrlParams: gen_parent_param_dict(false),
+                dataUrlParams: gen_parent_param_dict(parent),
                 queryParam: query_param,
                 method: "GET"
             });
@@ -75,5 +75,5 @@ $(function() {
             });
             return ms;
         }
-        attach_magic_suggest($("#level-0"), null);
+        attach_magic_suggest($("#level-0"), false);
     });

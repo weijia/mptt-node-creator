@@ -11,7 +11,7 @@ class TreeNodeCreator(TemplateView):
     template_name = 'mptt_node_creator/mptt_node_creator.html'
     root_parent = "None"
     parent_name = "parent"
-    display_field = "name"
+    display_field = "content"
     query_param = "content__icontains"
     results_field = "objects"
 
