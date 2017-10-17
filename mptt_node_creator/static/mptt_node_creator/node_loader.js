@@ -18,6 +18,7 @@ $(function() {
                 displayField: display_field,
                 dataUrlParams: gen_parent_param_dict(parent),
                 queryParam: query_param,
+                typeDelay: 100,
                 method: "GET"
             });
             div_elem.attr("ms", ms);
