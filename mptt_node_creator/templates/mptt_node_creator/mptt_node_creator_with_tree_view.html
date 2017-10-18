@@ -1,8 +1,7 @@
-{% extends "base.html" %}
+{% extends "mptt_tree_view/jstree_list.html" %}
 {% load bootstrap static %}
 
 {% block content %}
-    <h2>My requests:</h2>
-    {{ items }}
+    {{ block.super }}
     {% include 'mptt_node_creator/create_tree_node_request_selector.html' %}
 {% endblock %}

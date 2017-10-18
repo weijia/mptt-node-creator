@@ -14,7 +14,7 @@ $(function() {
             var ms = elem.magicSuggest({
                 data: base_tree_url,
                 resultsField: results_field,
-                valueField: "id",
+                valueField: display_field,
                 displayField: display_field,
                 dataUrlParams: gen_parent_param_dict(parent),
                 queryParam: query_param,
