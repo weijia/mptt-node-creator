@@ -30,4 +30,6 @@ class ExampleNodeCreateRequest(TreeItemCreateRequestBaseNode):
     content = TextField(max_length=512, blank=True, null=True)
 
     def __str__(self):
+        if self.parent is None:
+            return "%s" % self.content
         return "%s->%s" % (str(self.parent), self.content)

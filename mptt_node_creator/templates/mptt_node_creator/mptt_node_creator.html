@@ -3,6 +3,8 @@
 
 {% block content %}
     <h2>My requests:</h2>
-    {{ items }}
+    {% for item in items %}
+        {{ item }}<br/>
+    {% endfor %}
     {% include 'mptt_node_creator/create_tree_node_request_selector.html' %}
 {% endblock %}
