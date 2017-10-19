@@ -1,13 +1,6 @@
 {% load bootstrap static %}
 <link href="{% static 'magicsuggest/magicsuggest-min.css' %}" rel="stylesheet">
-<script>
-    var base_tree_url = "{{ base_tree_url }}";
-    var root_parent = "{{ root_parent }}";
-    var parent_name = "{{ parent_name }}";
-    var query_param = "{{ query_param }}";
-    var display_field = "{{ display_field }}";
-    var results_field = "{{ results_field }}";
-</script>
+{% include "mptt_node_creator/javascript_vars.html" %}
 <form action="">
     {% csrf_token %}
     <div id="input-holder">

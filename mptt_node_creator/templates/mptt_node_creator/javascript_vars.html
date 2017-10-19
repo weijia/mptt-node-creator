@@ -1,0 +1,5 @@
+<script>
+    {% for key,value in javascript_vars.items %}
+        var {{ key }} = "{{ value }}";
+    {% endfor %}
+</script>

@@ -19,6 +19,7 @@ class TreeNodeCreator(TemplateView):
     display_field = "content"
     query_param = "content__icontains"
     results_field = "objects"
+    max_level_of_input = 9999
 
     def init_tree_items(self):
         # super(TreeNodeCreator, self).init_tree_items()
@@ -48,12 +49,17 @@ class TreeNodeCreator(TemplateView):
 
         ctx["items"] = all_leaf_new_items
 
-        ctx["base_tree_url"] = get_tastypie_api_url(self.base_tree_model)
-        ctx["root_parent"] = self.root_parent
-        ctx["parent_name"] = self.parent_name
-        ctx["display_field"] = self.display_field
-        ctx["query_param"] = self.query_param
-        ctx["results_field"] = self.results_field
+        javascript_vars = {
+            "base_tree_url": get_tastypie_api_url(self.base_tree_model),
+            "root_parent": self.root_parent,
+            "parent_name": self.parent_name,
+            "display_field": self.display_field,
+            "query_param": self.query_param,
+            "results_field": self.results_field,
+            "max_level_of_input": self.max_level_of_input,
+        }
+
+        ctx["javascript_vars"] = javascript_vars
         return ctx
 
     def get_all_new_leaf_nodes(self):
