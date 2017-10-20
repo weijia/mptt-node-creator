@@ -31,6 +31,8 @@ $(function() {
                     }
 
                     var next_level = parseInt(div_elem.attr("level"))+1;
+                    if(next_level >= max_level_of_input) return;
+
                     var next_level_div_elem = $("#level-"+next_level);
                     var next_ms = next_level_div_elem.attr("ms");
                     if(next_level_div_elem.length > 0){
