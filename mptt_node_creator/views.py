@@ -4,6 +4,7 @@ from checklist.models import ChecklistTreeItem
 from djangoautoconf.django_utils import retrieve_param
 from djangoautoconf.model_utils.url_for_models import get_rest_api_url, get_tastypie_api_url
 from mptt_node_creator.models import ExampleNodeCreateRequest
+from mptt_node_creator.tree_table_generator import TreeTableGenerator
 from mptt_tree_view.views import JsTreeView
 
 
@@ -20,6 +21,7 @@ class TreeNodeCreator(TemplateView):
     query_param = "content__icontains"
     results_field = "objects"
     max_level_of_input = 9999
+    level_names = None
 
     def init_tree_items(self):
         # super(TreeNodeCreator, self).init_tree_items()
@@ -48,6 +50,9 @@ class TreeNodeCreator(TemplateView):
         all_leaf_new_items = self.get_all_new_leaf_nodes()
 
         ctx["items"] = all_leaf_new_items
+
+        ctx["tree_table"] = TreeTableGenerator(
+            self.display_field, self.level_names).get_tree_table(all_leaf_new_items)
 
         javascript_vars = {
             "base_tree_url": get_tastypie_api_url(self.base_tree_model),
