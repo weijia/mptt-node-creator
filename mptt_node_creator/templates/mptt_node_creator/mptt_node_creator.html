@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 {% load bootstrap static %}
+{% load render_table from django_tables2 %}
 
 {% block content %}
+    {% include "django_auto_filter/bootstrap_table_inc.html" %}
     <h2>My requests:</h2>
+    {% render_table tree_table %}
+    {% comment %}
     {% for item in items %}
         {{ item }}<br/>
     {% endfor %}
+    {% endcomment %}
+    <h2>Create new request</h2>
     {% include 'mptt_node_creator/create_tree_node_request_selector.html' %}
 {% endblock %}
