@@ -1,17 +1,15 @@
 from django.views.generic import TemplateView
-
-from checklist.models import ChecklistTreeItem
 from djangoautoconf.django_utils import retrieve_param
-from djangoautoconf.model_utils.url_for_models import get_rest_api_url, get_tastypie_api_url
+from djangoautoconf.model_utils.url_for_models import get_tastypie_api_url
 from mptt_node_creator.models import ExampleNodeCreateRequest
 from mptt_node_creator.tree_table_generator import TreeTableGenerator
-from mptt_tree_view.views import JsTreeView
+from obj_sys.models_ufs_obj import UfsObj
 
 
 class TreeNodeCreator(TemplateView):
     default_level = 999
 
-    base_tree_model = ChecklistTreeItem
+    base_tree_model = UfsObj
     node_create_request = ExampleNodeCreateRequest
     # template_name = 'mptt_node_creator/mptt_node_creator_with_tree_view.html'
     template_name = 'mptt_node_creator/mptt_node_creator.html'
